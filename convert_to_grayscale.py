@@ -38,9 +38,11 @@ if image is None:
 
 # Preprocess the image
 preprocessed_image = preprocess_image(image)
+cv2.imwrite('assets/preprocessed_image.png', preprocessed_image)  # Save preprocessed image
 
 # Apply adaptive thresholding to improve edge detection
 adaptive_thresh = cv2.adaptiveThreshold(preprocessed_image, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
+cv2.imwrite('assets/adaptive_thresholding.png', adaptive_thresh)  # Save adaptive thresholding result
 
 # Apply Sobel operator to detect edges
 sobel_x = cv2.Sobel(adaptive_thresh, cv2.CV_64F, 1, 0, ksize=3)
@@ -59,6 +61,7 @@ combined_edges = cv2.bitwise_or(sobel_edges, canny_edges)
 kernel = np.ones((7, 7), np.uint8)
 dilated_edges = cv2.dilate(combined_edges, kernel, iterations=1)
 closed_edges = cv2.morphologyEx(dilated_edges, cv2.MORPH_CLOSE, kernel)
+cv2.imwrite('assets/final_edges.png', closed_edges)  # Save final edges
 
 # Detect circles using Hough Circle Transform
 circles = cv2.HoughCircles(closed_edges, cv2.HOUGH_GRADIENT, dp=1.2, minDist=20,
@@ -73,12 +76,15 @@ if circles is not None:
         cv2.circle(image, center, radius, (0, 255, 0), 2)
         cv2.circle(image, center, 2, (0, 0, 255), 3)
 
+# Save the image with detected circles
+cv2.imwrite('assets/original.png', image)
+
 # Display results
 plt.figure(figsize=(20, 8))
 
 # Display original image with detected circles
 plt.subplot(1, 5, 1)
-plt.title('Original Image with Circles')
+plt.title('Original Image with Detected Circles')
 plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))
 plt.axis('off')
 
