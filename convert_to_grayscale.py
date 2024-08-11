@@ -28,7 +28,7 @@ def preprocess_image(image):
     return blurred_gray_image
 
 # Load the image
-input_file = 'occlusion2_rec.png'
+input_file = 'assets/occlusion2_rec.png'
 image = cv2.imread(input_file)
 
 # Check if the image was successfully read
