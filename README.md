@@ -11,21 +11,29 @@ This project demonstrates the use of OpenCV for image preprocessing and shape de
 
 ## Results
 
-### Original Image with Detected Circles
+### Original Image with Detected Curves
 
-This image shows the original image with detected circles marked. The circles are highlighted with green circles and red dots at their centers.
+This image shows the original image with detected curves marked. The circles are highlighted with green circles and red dots at their centers.
+
+![Original Image with Detected Curves](assets/original.png)
 
 ### Preprocessed Image
 
 This image shows the grayscale image after applying CLAHE and Gaussian blur.
 
+![Preprocessed Image](assets/preprocessed_image.png)
+
 ### Adaptive Thresholding
 
 This image shows the result of applying adaptive thresholding to the preprocessed image to highlight edges.
 
+![Adaptive Thresholding](assets/adaptive_thresholding.png)
+
 ### Final Edges
 
 This image shows the final edges after combining Sobel and Canny edge detection and applying morphological operations.
+
+![Final Edges](assets/final_edges.png)
 
 ## How to Run
 
